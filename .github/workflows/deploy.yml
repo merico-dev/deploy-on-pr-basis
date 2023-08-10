@@ -1,0 +1,15 @@
+name: production-deploy
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  deploy:
+    name: deploy to production
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Deploy
+      run: echo Build and Deploy

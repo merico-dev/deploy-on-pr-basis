@@ -1,15 +1,21 @@
 name: production-deploy
 on:
-  push:
-    branches:
-      - 'main'
+  # push:
+  #   branches:
+  #     - 'main'
+  pull_request:
+    branches: [main]
+    types: [closed]
 
 jobs:
   deploy:
     name: deploy to production
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        ref: 'main'
     - name: Deploy
       run: echo Build and Deploy
